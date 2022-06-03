@@ -64,12 +64,53 @@ def resize(oldarray,resize_factor):
             newarray[i]=oldarray[i]
             i=i+1
         return(newarray)
-originalarray=myarray
+originalarray=copyarray(myarray)       #change here
 newar_array=resize(originalarray,5)
 print(newar_array)
 newar_array=resize(originalarray,-2)
 print(newar_array)
-
+##reversing an array    #we reverse the itself array
+print("73")
+def reverse(oldarray):
+    temparray=[0]*int(len(oldarray))
+    j=0
+    for i in range(int(len(oldarray)-1),-1,-1):
+        #print(i)
+        temparray[j]=oldarray[i]
+        j=j+1
+    for i in range(0,int(len(oldarray))):
+        oldarray[i]=temparray[i]
+    return oldarray
+originalarray=copyarray(myarray)       #change here
+originalarray=reverse(originalarray)
+print(originalarray)
+##shifing an array left
+print("88")
+def shift_left(oldarray,shift_factor):
+    newarray=[0]*len(oldarray)
+    j=0
+    for i in range(shift_factor,len(oldarray)):
+        newarray[j]=oldarray[i]
+        j=j+1
+    #print(newarray)
+    return(newarray)
+originalarray=copyarray(myarray)       #change here
+newar_array=shift_left(originalarray,1)     #shift factor works exactly with 1 2 3 4 5 6 7... also 0
+print(newar_array)
+print("100")
+def shift_right(oldarray,shift_factor):
+    newarray=[0]*len(oldarray)
+    j=0
+    for i in range(shift_factor,len(oldarray)):
+        newarray[i]=oldarray[j]
+        j=j+1
+    #print(newarray)
+    return(newarray)
+originalarray=copyarray(myarray)       #change here
+newar_array=shift_right(originalarray,1)
+print(newar_array)
+print("112")
+#inserting an elemet into an arry
 
 
 
