@@ -4,12 +4,12 @@
 #copying an array
 #resizing an array
 #reversing an array
-#shifing an array left
-#shiffing an array right
-#inserting an elemet into an arry
-#removing an elemt from an array
-#rotating an array left
-#rotating an array right
+#shifing an array left          //sir method 5th june
+#shiffing an array right          //sir method 5th june
+#inserting an elemet into an arry          //sir method 5th june
+#removing an elemt from an array          //sir method 5th june
+#rotating an array left          //sir method 5th june
+#rotating an array right          //sir method 5th june
 
 #first of all list is not array
 #u cannot expand arrray
