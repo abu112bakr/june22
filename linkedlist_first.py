@@ -18,6 +18,9 @@
 #some basic things https://www.w3schools.com/python/python_arrays.asp
 
 #creating an array with size array=[0]*5
+from multiprocessing import Condition
+
+
 myarray=[0]*5
 myarray[0]=1
 myarray[1]=2
@@ -111,6 +114,25 @@ newar_array=shift_right(originalarray,1)
 print(newar_array)
 print("112")
 #inserting an elemet into an arry
+print("114")
+#if not empty move other one place right
+#if fully filled then resize by 1
+def isfilled_array(array):
+    condition=True
+
+def insert_array(array,index,item):
+    if array[index]==0: #[5,5,5,0,5,5,5] i=3
+        array[index]=item
+        return array
+    elif(array[len(array)-1]==0):   #[5,5,5,5,5,0] i=3
+        #last elemet empy
+        #shift one step to right
+        for i in range(index,len(array)):
+            #[0,1,2, 3 ,4,5,0]
+            temp=array[i]
+            array[i]=item
+            item=
+
 
 
 
