@@ -16,24 +16,10 @@ def shift_left(source, k):
     j=j-1
     count+=1
 source=[10,20,30,40,50,60]
-#print(source,"   1")
-shift_left(source,1)
-#print(source)
 
-print()
-source=[10,20,30,40,50,60]
-print(source,"   2")
-shift_left(source,2)
-print(source)
-
-print()
-source=[10,20,30,40,50,60]
-#print(source,"   3")
-#shift_left(source,3)
-#print(source)
-
-print()
-source=[10,20,30,40,50,60]
-#print(source,"   4")
-#shift_left(source,4)
-#print(source)
+i=4
+k=2
+print("before while ", i ,"<",(len(source)-1))
+while(i<len(source)-k):
+    print("inside while ", i ,"<",(len(source)-1))
+    i=i+1
