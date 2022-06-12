@@ -1,39 +1,15 @@
-#left shift like lab sir
-#Na parle chobi akba works
-def shift_left(source, k):
-  i=0
-  while(i<len(source)-k):
-    print("inside while ", i ,"<",(len(source)-1))
-    source[i]=source[i+k]
-    i=i+1
-  
-  j=len(source)-1 #5
-  count=0
-  while(count<k):
-    #print("I am here")
+def find_same(a):
+  for i in range(0,len(a)):
+    print(i)
     
-    #source[j]=0
-    j=j-1
-    count+=1
-source=[10,20,30,40,50,60]
-#print(source,"   1")
-shift_left(source,1)
-#print(source)
+    for j in range(i+1,len(a)):
+      print(j,end=" ")
+      if a[i]==a[j]:
+        print()
+        print(a[i]," matches")
+    print()
+a=[1,5,6,8,5]
+a=[1,3,6,8,7]
+a=[1,4,1,6,8,5]
+find_same(a)
 
-print()
-source=[10,20,30,40,50,60]
-print(source,"   2")
-shift_left(source,2)
-print(source)
-
-print()
-source=[10,20,30,40,50,60]
-#print(source,"   3")
-#shift_left(source,3)
-#print(source)
-
-print()
-source=[10,20,30,40,50,60]
-#print(source,"   4")
-#shift_left(source,4)
-#print(source)
