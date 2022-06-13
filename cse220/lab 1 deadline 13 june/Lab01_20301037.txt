@@ -1,0 +1,500 @@
+#Task 1     
+#https://docs.google.com/document/d/1HOCXMA5BOnwNkGY0JJuOsOnMwQHmOAIqEvg4_9zuBec/edit?usp=sharing
+
+# Shift Left k Cells   
+#Consider an array named source. Write a method/function named shiftLeft( source, k) 
+#that shifts all the elements of the source array to the left by 'k' positions. 
+#You must execute the method by passing an array and number of cells to be shifted.
+# After calling the method, print the array to show whether the elements have been shifted properly.
+#Example:
+#source=[10,20,30,40,50,60]
+#shiftLeft(source,3)
+#After calling shiftLeft(source,3), printing the array should give the output as: 
+# [ 40, 50, 60, 0, 0, 0 ]
+
+#shift left by RAK sir
+def shiftLeft( source, k):
+  j=0
+  while(j<k):
+
+    i=1
+    while(i<len(source)):
+
+      source[i-1]=source[i]
+      i=i+1
+    source[len(source)-1]=0
+    j=j+1
+source=[ 10,20,30,40,50,60 ]
+print(source)
+#shiftLeft(source,1)
+shiftLeft(source,3)
+print(source)
+
+print("#############################")
+#left shift like lab sir
+#Na parle chobi akba works
+def shift_left(source, k):
+  i=0
+  while(i<len(source)-k):
+    #print("inside while ", i ,"<",(len(source)-1))
+    source[i]=source[i+k]
+    i=i+1
+  
+  j=len(source)-1 #5
+  count=0
+  while(count<k):
+    #print("I am here")
+    
+    source[j]=0
+    j=j-1
+    count+=1
+source=[10,20,30,40,50,60]
+#print(source,"   1")
+shift_left(source,3)
+print(source)
+
+#print()
+#source=[10,20,30,40,50,60]
+#print(source,"   2")
+#shift_left(source,2)
+#print(source)
+
+#print()
+#source=[10,20,30,40,50,60]
+#print(source,"   3")
+#shift_left(source,3)
+#print(source)
+
+#print()
+#source=[10,20,30,40,50,60]
+#print(source,"   4")
+#shift_left(source,4)
+#print(source)
+
+#done :) 
+
+#Task 2
+#Rotate Left k cells 
+# Consider an array named source. Write a method/function named 
+#rotateLeft( source, k) that rotates all the elements of the source array to the left by 'k' positions. 
+#You must execute the method by passing an array and number of cells to be shifted. After calling the method, 
+#print the array to show whether the elements have been shifted properly.
+#Example:
+#source=[10,20,30,40,50,60]
+#rotateLeft(source,3)
+#After calling rotateLeft(source,3), printing the array should give the output as: 
+# [ 40, 50, 60, 10, 20, 30]
+
+def left_rotate(a,n):
+  count=0
+  while(count<n):
+    first=a[0]
+    for j in range(0,len(a)-1):
+      a[j]=a[j+1]
+    a[len(a)-1]=first
+    count+=1
+
+source=[1,2,3,4,5,6,7]
+source=[10,20,30,40,50,60]
+print(source)
+left_rotate(source,3)
+print(source)
+print("##########################")
+#Done :)
+
+#Task 3
+# Shift Right k Cells   
+#Consider an array named source. Write a method/function named shifRight( source, k) 
+#that shifts all the elements of the source array to the right by 'k' positions. 
+#You must execute the method by passing an array and number of cells to be shifted. 
+#After calling the method, print the array to show whether the elements have been shifted properly.
+#Example:
+#source=[10,20,30,40,50,60]
+#shiftRight(source,3)
+#After calling shiftRight(source,3), printing the array should give the output as: 
+# [ 0,0,0,10,20,30 ]
+#RAK sir method
+def shiftRight( source, k):
+  j=0
+  while(j<k):
+    i=len(source)-1
+    while (i>=1):
+      source[i]=source[i-1]
+      i=i-1
+    source[0]=0
+    j=j+1
+source=[10,20,30,40,50,60]
+print(source)
+shiftRight(source,3)
+print(source)
+print("#####################################")
+
+##right shift LAB-sir     #have to work dynamcally
+def shift_right(source,k):  #see phone pic
+
+  i=len(source)-1
+  while(i>=k):
+    source[i]=source[i-k]   #new
+    i=i-1
+  j=0
+  while(j<k):
+    source[j]=0
+    j=j+1
+source=[10,20,30,40,50,60]
+print(source)
+shift_right(source,3)
+print(source)
+
+#Done :)
+
+
+#Task 4
+#Rotate Right k cells 
+# Consider an array named source. Write a method/function named rotateRight( source, k) 
+#that rotates all the elements of the source array to the right by 'k' positions. 
+#You must execute the method by passing an array and number of cells to be shifted. 
+#After calling the method, print the array to show whether the elements have been shifted properly.
+#Example:
+#source=[10,20,30,40,50,60]
+#rotateRight(source,3)
+#After calling rotateRight(source,3), printing the array should give the output as: 
+# [ 40, 50, 60, 10, 20, 30]
+
+def rotateRight( source, k):
+
+  j=0
+  while(j<k):
+    i=len(source)-1
+    temp=source[i]  #new last index is stored
+    while (i>=1):
+      source[i]=source[i-1]
+      i=i-1
+    source[0]=temp  #new first index = saved index
+    j=j+1
+source=[10,20,30,40,50,60]
+print(source)
+rotateRight(source,3)
+print(source)
+print("##########################")
+#DOME BY SIR HIMSELF
+##rotate right LAB-sir     #have to work dynamcally
+def rotate_Right(source,k):  #see phone pic
+  temp_array=[0]*k
+  t = k-1
+  for i in range(len(source)-1,len(source)-1-k,-1):
+    temp_array[t]=source[i]
+    t -= 1
+  #print(temp_array)
+  i=len(source)-1
+  while(i>=k):
+    source[i]=source[i-k]   #new
+    i=i-1
+#  j=0
+#  while(j<k):
+#    source[j]=0
+#    j=j+1
+  j=0
+  while(j<k):
+    source[j]=temp_array[j]
+    j=j+1
+source=[10,20,30,40,50,60]
+print(source)
+rotate_Right(source,3)
+print(source)
+#Done :)
+
+
+
+#Task 5
+#Remove an element from an array
+# Consider an array named source. Write a method/function named remove( source, size, idx) that removes the element in index idx of the source array. You must execute the method by passing an array, its size and the idx( that is the index of the element to be removed). After calling the method, print the array to show whether the element of that particular index has been removed properly.
+#Example:
+#source=[10,20,30,40,50,0,0]
+#remove(source,5,2)
+#After calling remove(source,5,2) , printing the array should give the output as: 
+# [ 10,20,40,50,0,0,0]
+
+
+def REMOVE( source, size,index):
+  i=index+1
+  while(i<size):
+    source[i-1]=source[i]
+    i+=1
+  #source[len(source)-1]=0
+  source[size-1]=0
+
+source=[ 10,20,30,40,50,0,0 ]
+print(source)
+#shiftLeft(source,1)
+REMOVE(source,5,2)
+print(source)
+
+
+##################################### EXTRA #######################
+####################INSERTING NOT IN LAB FILE#############################
+#INSERT AN INDEX
+#class note
+#compact array [10,20,40,50,0,0,0]
+#length7
+#size4
+#1 size=length ---> Not enough size
+#2 index<0      ---> wrong index
+#                      i
+#observe [10,20,30,40,50,0,0,0]
+#length=8
+#size=5
+#3 index>size ---->Wrong index
+
+
+##RIGHT SHIFT LAB SIR
+#source ndex value
+def insert_value(source,index,value,size):
+  i=size-1
+  while(i>=index):
+    source[i+1]=source[i]
+    i-=1
+  print(source)
+  source[index]=value
+  size +=1
+  return size
+source=[10,20,30,40,50,0,0]
+#source index value size
+#size=5
+#size=insert_value(source,5,2,5)
+#print(source)
+#print(size)
+############################################## EXTRA #############################
+####################INSERTING NOT IN LAB FILE#############################
+
+
+# DONE :)
+
+
+
+
+
+#task 6        Remove all occurrences of a particular element from an array
+#Remove all occurrences of a particular element from an array
+#Consider an array named source. Write a method/function named removeAll( source, size, element) that removes all the occurrences of the given element in the source array. You must execute the method by passing an array, its size and the element to be removed. After calling the method, print the array to show whether all the occurrences of the element have been removed properly.
+#Example:
+#source=[10,2,30,2,50,2,2,0,0]
+#removeAll(source,7,2)
+#After calling removeAll(source,7,2), all the occurrences of 2 must be removed. Printing the array afterwards should give the output as: 
+# [ 10,30,50,0,0,0,0,0,0]
+
+def removeAll( source, size, element):
+  for i in range(0,len(source)):
+    #print(source[i],i)
+    if source[i]==element:
+      index=i
+      left_shift_mod(source,size,element,index)
+def left_shift_mod(source,size,element,index):
+  j=index+1
+  while(j<len(source)):
+    source[j-1]=source[j]
+    j=j+1
+  source[len(source)-1]=0   #source[len(source)-1]=0
+      #while(j<len(source)):
+      #  #print("inside while")
+     # 
+      #  source[j-1]=source[j]
+      #  j=j+1
+     # source[len(source)-1]=0
+  removeAll(source,size,element)
+  
+
+source=[10,2,30,2,50,2,2,0,0]
+print(source)
+removeAll(source,7,2)
+print(source)
+
+#source=[10,2,30,2,50,2,2,50,30,2,2,2,10,20,30,40,50,60,70,80,90]
+#print(source)
+#removeAll(source,7,2)
+#print(source)
+#print("6 DONE :)")
+#DONE :)
+
+
+#Task 7
+#Splitting an Array
+#Suppose the elements of an array A containing positive integers, 
+#denote the weights in kilograms. And we have a beam balance. 
+#We want to put the weights on both pans of the balance in such a 
+#way that for some index 0 < i < A.length - 1, all values starting
+# from A[0], A[1], upto A[ i - 1], should be on the left pan. And all 
+#values starting from A[ i ] upto A[ A.length - 1] should be on the right
+# pan and the left and right pan should be balanced. If such an i exists, return true . Else, return false. 
+#Input: [1, 1, 1, 2, 1]	Output : true
+#Explanation: (summation of [1, 1, 1] = summation of [2,1])
+#Input: [2, 1, 1, 2, 1] Output: false
+#Input: [10, 3, 1, 2, 10]  Output: true 
+#Explanation: (summation of [10, 3] = summation of [1,2,10]))
+
+def splitting_balancing(array):
+  ##import webbrowser
+
+  first_list=[0]
+  second_list=[]
+  length=len(array)
+  balanced=False
+  for i in range(length):
+
+    first_list=array[0: i+1] ##first list 0 to before i arrays are pushed into the first list
+    second_list=array[i +1 :length] #i+1 to last
+    if sum(first_list)==sum(second_list):
+      balanced=True
+      message="Perfectly balanced as all things should be"
+      #sadly not working
+      #webbrowser.open_new_tab('https://www.youtube.com/watch?v=MSHWrt1PMgo')
+      #webbrowser.get('chrome').open_new_tab('https://www.youtube.com/watch?v=MSHWrt1PMgo')
+      # tried to code some funny meme but sadly it dont works in every pc
+  return balanced
+A = [1, 1, 1, 2, 1]
+A = [2, 1, 1, 2, 1]
+A = [10, 3, 1, 2, 10]
+print(splitting_balancing(A))
+
+#done :)
+
+
+
+
+
+# Task 8
+#8    #DONE alhamdulliah with the help with st
+#Array series
+#Write a method that takes an integer value n as a parameter. 
+#Inside the method, you should create an array of length n squared (n*n) 
+#and fill the array with the following pattern. Return the array at the end and print it.
+#If,
+#n=2: { 0,1,   2,1 } (spaces have been added to show two distinct groups).
+#n=3 : { 0, 0, 1,    0, 2, 1,    3, 2, 1 } ((spaces have been added to show three distinct 
+#groups).
+#n=4 : {0, 0, 0, 1,   0, 0, 2, 1,    0, 3, 2, 1,   4, 3, 2, 1}  (spaces have been added to show four distinct groups).
+#1 -- {0}   0
+#2 -- {01 21}   10 12
+#3 -- {001 021 321}   100 120 123
+#4 -- {0001 0021 0321 4321}   1000 1200 1230 1234
+#n*n array
+#n=2  01  21  
+#     n-1zero n-2zero n-3zero
+#     n=1 n=2 n=3
+#n=3  001 021 321
+def print_pattern(n):
+  arr=[0]*n*n
+  count=0
+  for i in range(0,n):
+    zero_count=n-(i+1)
+    for j in range(0,n):
+      if(zero_count>0):
+        arr[count]=0
+        count+=1
+        zero_count-=1
+      else:
+        arr[count]=n-j
+        count+=1###
+      #count+=1###
+  print(arr)
+
+
+print_pattern(4)
+#DONE :)
+
+
+#Task 9 mac bunch count
+#same value continuous repeat
+
+#Max Bunch Count
+#A "bunch" in an array is a consecutive chain of two 
+#or more adjacent elements of the same value. Write a method 
+#that returns the number of elements in the largest bunch 
+#found in the given array.
+#Input: [1, 2, 2, 3, 4, 4, 4]   Output: 3
+#Explanation: There are two bunches here {2,2} and {4,4,4}. 
+#The largest bunch is {4,4,4} containing 3 elements so 3 is returned.
+#Input: [1,1,2, 2, 1, 1,1,1] Output:4
+# Explanation: There are three bunches here {1,1} and {2,2} 
+#and {1,1,1,1}. The largest bunch is {1,1,1,1} containing 4 elements so 4 is returned.
+def find_max(a):
+  max=a[0]
+  for i in range(0,len(a)):
+    if a[i]>max:
+      max=a[i]
+  return max
+def bunch(a):
+  outputlist=[]
+  previous=a[0]
+  times=0
+  i=0
+  while i<len(a):
+    if a[i]==previous:
+      times+=1
+    else:
+      times=1
+      previous=a[i]
+    outputlist.append(times)
+    i+=1
+  #print(outputlist)
+  max=find_max(outputlist)
+  return(max)
+
+a=[1,2,2,3,4,4,4]
+a=[1,1,2, 2, 1, 1,1,1]
+#     5                       3
+#a=[5,5,5,5,5,4,7,8,9,5,2,6,4,1,1,1,5,5,2,4,7,6,9,5]
+print(bunch(a))
+
+#done :)
+
+
+#10 repetation
+
+#Repetition
+# Write a method that takes in an array as a parameter and counts 
+#the repetition of each element. That is, if an element has appeared 
+#in the array more than once, then its ‘repetition’ is its number of 
+#occurrences. The method returns true if there are at least two elements 
+#with the same number of ‘repetition’. Otherwise, return false.
+#Input: {4,5,6,6,4,3,6,4} Output: True
+#Explanation: Two numbers repeat in this array: 4 and 6. 4 has a
+# repetition of 3, 6 has a repetition of 3. Since two numbers
+# have the same repetition output is True.
+#Input: {3,4,6,3,4,7,4,6,8,6,6} Output: False
+#Explanation: Three numbers repeat in this array:3,4 and 6 .3 has 
+#a repetition of 2, 4 has a repetition of 3, 6 has a repetition of 4. 
+#Since no two numbers have the same repetition output is False.
+
+#approach
+#array index is the number and value is the number of repeatation
+def find_max(a):
+  max=a[0]
+  for i in range(0,len(a)):
+    if a[i]>max:
+      max=a[i]
+  return max
+def same_repetition(a):
+    max=find_max(a)
+    new_array=[0]*(max+1)
+
+    for item in a:
+      new_array[item]=new_array[item] + 1
+    #print(new_array)
+    #mew_array : array index is the number and value is the number of repeatation
+
+    #double loop to find repeatation in new_array
+    for i in range(0,len(new_array)):
+      for j in range(i+1,len(new_array)):
+        if new_array[i]==new_array[j]:
+          return True
+    
+    return False
+
+
+a=[4,5,6,6,4,3,6,4]
+a=[3,4,6,3,4,7,4,6,8,6,6]
+print(same_repetition(a))
+
+#Done
+
+
