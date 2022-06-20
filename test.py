@@ -33,7 +33,7 @@
 
 list=[1, 3, 5, 4, 2]
 output=[]
-for i in range(0,len(list)):
+for i in range(1,len(list)):
   pi_minus_1=i-1
   pi=i
   pi_plus_1=i+1

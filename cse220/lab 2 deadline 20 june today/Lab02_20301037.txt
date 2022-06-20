@@ -1,0 +1,276 @@
+# I AM FACING INDEXING PROBLEM AT TASK 9
+#c9 = CircularArray(lin_arr6, 8, 6)
+#index 8 not present at lin_arr6
+# I think I have problem with constructior
+#I manually tested all the methods and saw it works
+#but all the test cases do not run simultaneously :(
+
+class CircularArray:
+  def __init__(self, lin, st, sz):
+    # Initializing Variables
+    #self.start = 2
+    #self.size = 6
+    #           0 1 2 3 4 5    
+    #self.cir = [5,6,1,2,3,4]
+    
+    # if lin = [10, 20, 30, 40, None]
+    # then, CircularArray(lin, 2, 4) will generate
+    # cir = [40, null, 10, 20, 30]
+    condition=True
+    #if lin == [10, 20, 30, 40, None]:
+    if condition==True:
+    
+      #making circular
+      self.cir=[0]*len(lin)
+      j=st
+      for i in range(0,len(lin)):
+        self.cir[j]=lin[i]
+        j=(j+1)%len(lin)
+
+      self.start=st
+      self.size=sz
+      self.length=len(self.cir)
+####      print("was",lin)
+####      print("now",self.cir)
+
+#    else:
+#    elif lin==[10, 20, 30, 20, 10, None, None] or lin==[10, 20, -30, 20, 50, 30, None]:
+#  
+#      #making circular
+#      self.cir=[0]*len(lin)
+#      j=st
+#      for i in range(0,len(self.cir)):
+#       self.cir[j]=lin[i]
+#        j=(j+1)%len(lin)
+
+
+      #self.start=2
+      #self.size=6
+      #self.cir=[5,6,1,2,3,4]
+    
+    
+    # To Do. 
+    # Hints: set the values for initialized variables
+  
+  # Print from index 0 to len(cir) - 1
+  def printFullLinear(self): #Easy        #DONE 1   #works when self.cir is linearize
+    #for i in range(0,len(self.cir)-1):
+    #print(self.cir,"TEST")
+    for i in range(0,len(self.cir)-1):
+      print(self.cir[i])
+    # To Do
+    #pass # Remove this line
+  
+  # Print from start index and total size elements
+  def printForward(self): #Easy           #DONE 2 
+    i=self.start
+    count=0
+    while count<(self.size):
+    #while count<(len(self.cir)):
+      print(self.cir[i])
+      
+      count+=1
+      i=(i+1)%len(self.cir)
+    # To Do
+    #pass # Remove this line
+
+  
+  def printBackward(self):#Easy       #DONE 3
+    #i=self.start####WRONG I SHOULD BE LAST INDEX, FIND LAST INDEX USING MATHMETICAL FUNCTION
+    i=(self.start+self.size-1)%len(self.cir)
+    count=0
+    while count<(self.size):
+
+      print(self.cir[i])
+      i=i-1
+      count+=1
+      if i<0:
+        i=len(self.cir)-1
+      # To Do
+    #pass # Remove this line
+  
+  # With no null cells
+  def linearize(self):#Medium                     #DONE   4
+  #make new array according to size of circular array, forward traversal and copy element and dont include null
+    new_array=[0]*self.size
+    i=self.start
+    count=0
+    while count<(self.size):
+    #while count<(len(self.cir)):
+      new_array[count]=self.cir[i]
+      
+      count+=1
+      i=(i+1)%len(self.cir)    
+    print("new linear array #")
+    print(new_array)
+
+    # To Do
+    pass # Remove this line
+  
+  # Do not change the Start index
+
+  def resizeStartUnchanged(self,newcapacity): #Medium        # Done5  self.newcapacity     
+    new_array=[0]*(int(newcapacity)+len(self.cir) )
+    i=self.start
+    count=0
+    while count<(self.size):
+
+      new_array[count]=self.cir[i]     
+      
+      count+=1
+      i=(i+1)%len(self.cir)
+    
+    print("resizeStartUnchanged", new_array)        
+    # To Do
+    pass # Remove this line
+
+
+  
+  # This method will check whether the array is palindrome or not
+  ## TASK 6
+  def palindromeCheck(self): #Hard                      #########do  self.newcapacity
+    # a woard which is same form backward and forward eg MOM DAD ROTATOR
+    # 0 1 2 3 4 5 6
+    # R O T A T O R   compare index: 0 with 6, 1 with 5, 2 with 4, 3 with 3
+    #odd palindrome run 7/2=4
+    #generally
+    #Palindrome=True
+    #
+    ##for i in range(0,n//2):
+    ## if a[i]!=a[n-1-i]:
+    ##   Palindrome=False
+    ##   break
+    
+    temp_list=[]
+    cir_arr=[]
+    for i in self.cir:
+      cir_arr.append(i)
+    #print("cir_arr local",cir_arr)
+    ##print("cir_arr is ",cir_arr)
+    start_index=self.start
+    cir_size=self.size
+    cir_len=len(self.cir)
+    #for i in range(0,cir_size):
+    for i in range(0,cir_size):
+      #if cir_arr[start_index] !=0:
+      if cir_arr[start_index] !=None:
+        temp_list.append(cir_arr[start_index])
+        #print("trying to append ", cir_arr[start_index])
+        start_index +=1   ##start index++
+      if start_index==cir_len:  #point to start=0
+        start_index=0
+    
+    mid_index=(len(temp_list)+1) //2
+    #checking
+    x=mid_index+1
+    #if temp_list[0:mid_index]==temp_list[-1:-x:-1]:
+    #print("inside palindrome, temp_list is",temp_list)
+    if temp_list[0:mid_index]==temp_list[-1:-(mid_index+1):-1]:
+      print("This array is a palindrome")
+    else:
+      print("This array is NOT a palindrome")
+
+
+
+
+
+    #i=self.start
+    #j=(self.start+self.size-1)%len(self.cir)
+
+    #mid=self.size/2
+    
+
+    #for k in range(mid):
+
+     # if self.cir[i]!=self.cir[j]:
+     #   return False
+     # else:
+     #   i=(i+1)%len(self.cir)
+     #   j=j-1
+     #   if j<0:
+     #     j=self.size-1
+     # return True
+
+
+
+#    pass # Remove this line
+
+  # This method will sort the values by keeping the start unchanged
+  def sort(self):
+    # To Do
+    new = []
+    i=self.start
+    count=0
+    while count<(self.size):
+    #while count<(len(self.cir)):
+      #print(self.cir[i])
+      new.append(self.cir[i])
+      count+=1
+      i=(i+1)%len(self.cir)
+    #new is a linear arrary
+    
+    pass # Remove this line
+  
+  # This method will check the given array across the base array and if they are equivalent interms of values return true, or else return false
+  def equivalent(self, cir_arr):
+    # To Do
+    i=self.start
+    count=0
+    condition=True
+    while count<(self.size):
+    #while count<(len(self.cir)):
+      #print(self.cir[i])
+      if(self.cir!=cir_arr):
+        condition=False
+      count+=1
+      i=(i+1)%len(self.cir)
+    return condition
+    pass # Remove this line
+
+  # the method take another circular array and returns a linear array containing the common elements between the two circular arrays.
+  def intersection(self, c2):
+    # To Do
+    list1=[0]*self.size
+    list2=[0]*c2.size
+    index_1=self.start
+    index_2=c2.start
+    #1st loop
+    i=0
+    while i<=(self.size-1):
+      list1[i]=self.cir[index_1]
+      i+=1
+    #pass # Remove this line
+
+    #loop2
+    for i in range(0,c2.size):
+      list2[i]=c2.cir[index_2]
+      index_2=(index_2+1)%len(c2.cir)
+    new=[]
+    #comparing
+    new=[]
+    i=0
+    while i<= (len(list1)-1):
+      if list1[i] in list2:
+        new[len(new) :]=[list1[i]]
+      i=i+1
+    return new
+
+#    #        st
+#    #0   1   2   3    4
+#lin=[10, 20, 30, 40, None]
+#st=2
+#sz=4
+#test=CircularArray(lin,st,sz)
+#test.printFullLinear()
+#print("#")
+#test.printForward()
+#print("backward try #")
+#test.printBackward()
+#test.linearize()
+#test.resizeStartUnchanged(3)
+## for Task 6
+
+#lin_arr3 = [10, 20, 30, 20, 10, None, None]
+#c3 = CircularArray(lin_arr3, 3, 5)
+#c3.printForward() # This should print: 10, 20, 30, 20, 10
+#c3.palindromeCheck() # This should print: This array is a palindrome

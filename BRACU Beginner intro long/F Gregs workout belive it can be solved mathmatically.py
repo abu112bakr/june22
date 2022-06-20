@@ -88,7 +88,15 @@ elif x==1:
 elif x==2:
   print("back")
 
+################MORE SIMPLE EASIER WAT
+#     0 1 2  3 4 5  6 
+#list=[1,2,3 ,4,5,6, 7]
 
+#print("index mod 3",i,"%","3=",i%3)
+
+#for i in range(0,len(list)):
+#    print("index mod 3:",i,"%","3=",i%3)
+#############################################
 
 
 
