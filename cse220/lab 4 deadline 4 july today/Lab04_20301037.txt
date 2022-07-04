@@ -1,0 +1,325 @@
+### Dummy headed doubly linked list
+#everything tested and works Alhamdulliah
+class Node:
+  def __init__(self, e, n, p):
+    self.element = e
+    self.next = n
+    self.prev = p
+
+
+
+
+
+
+#everything tested and works Alhamdulliah
+class DoublyList:
+  
+  def __init__(self, a):
+    #CREATES DUMMY HEADED CIRCULAR DOUBLY LINKED LIST 
+
+  #  Design the constructor based on data type of a. If 'a' is built in python list then
+  #  Creates a linked list using the values from the given array.
+    self.head = None
+#Using dummy headed dubly linked list according to sir
+#index of dummy is -1
+
+#[none]->[10]->[12]->[13]->[14]                   do previous connectaion first
+#   -1    0     1     2     3
+#p=last                     p=last
+#n=next                     n=dummy
+
+      ##done by sir
+    self.head=Node(None,None,None)  #n is dummy
+    self.head.prev=self.head.next=self.head
+    tail=self.head
+    for i in range(len(a)):
+      new_node=Node(a[i],None,None)
+      new_node.next=self.head
+      new_node.prev=tail      ##
+      tail.next=new_node
+      ##see figure
+      self.head.prev=new_node
+      tail=new_node
+    #COUNT WILL START FROM TEMP=SELF.HEAD.NEXT
+    #WHILE(TEMP!=SELF.HEAD)
+    #reverse
+    #temp=self.head.prev
+    #while(temp=temp.prev)??
+
+  # Counts the number of Nodes in the list
+  def countNode(self):                  #done     #returns length excluding dummy node
+    temp=self.head.next
+    count=0
+    while(temp!=self.head):
+      count=count+1
+      temp=temp.next
+    return count
+    pass # Remove this line
+  
+  # prints the elements in the list
+  def forwardprint(self):               #done
+    temp=self.head.next
+    while(temp!=self.head):
+      print(temp.element)
+      temp=temp.next
+    # To Do
+    #pass # Remove this line
+
+  # prints the elements in the list backward
+  def backwardprint(self):                #done
+    temp=self.head.prev
+    while(temp!=self.head):
+      print(temp.element)
+      temp=temp.prev
+    # To Do
+    #pass # Remove this line
+
+  # returns the reference of the at the given index. For invalid index return None.
+                                                                                          #done
+  def nodeAt(self, idx):                                          #done also works during exception
+    if idx<0:
+      x=Node("index error",None,None)
+      return x
+    temp=self.head.next
+    count=0
+    while(temp!=self.head):
+      if count==idx:
+        return temp
+      count=count+1
+      temp=temp.next
+    x=Node("index error",None,None)
+    return x
+
+    #pass # Remove this line
+  
+  # returns the index of the containing the given element. if the element does not exist in the List, return -1.
+  def indexOf(self, elem):
+    temp=self.head.next
+    count=0
+    while(temp!=self.head):
+      if temp.element==elem:
+        return count
+      count+=1
+      temp=temp.next
+    return-1
+
+    # To Do
+    pass # Remove this line
+
+  # inserts containing the given element at the given index Check validity of index. 
+  def insert(self, elem, idx):
+    if (idx<0 or idx>self.countNode()):             #range to return 0 to validindex+1/len
+      return "index invalid"
+
+
+    
+                                                               ##Follow RAK notes from copy
+#    #RAK METHOD RAK method not working for 0,1 index
+#    h=self.head
+#    #h=self.head.next
+#    n=Node(elem,None,None)
+#    i=0
+#    while (i<idx):
+#      h=h.next
+#      i=i+1
+#    prev=h.prev
+#    #n.next=h
+#    n.next=h.next
+#
+#    h.prev=n
+#
+#    prev.next=n
+#    n.prev=prev
+#    
+#    if idx==0:  #CURRENTLY NEW_NODE IS THE LAST NODE
+#      #RAK SIR USED ONE LINE TO FIXED ALL OF THIS BUT I DID NOT WIRTE CORRECTLY SO DOING IT MANUALLY
+#      #self.head.next=self.head.prev
+#      #self.head=self.head.prev
+#      pass
+    if(idx==0):
+      n=Node(elem, None,None)
+      h=self.head
+      previous=self.head
+      subsiquent=self.head.next
+
+      subsiquent.prev=n
+      n.next=subsiquent
+
+      self.head.next=n
+      n.prev=self.head
+
+    # remember .countNode() returns length excluding dummy node
+    #adding last
+    elif(idx==self.countNode()):      #we have index till 4, but 5 indexx is given #adding last
+      oldlastnode=self.nodeAt(idx-1)
+
+      n=Node(elem,None,None)
+      previous=oldlastnode
+      #subsiquent=self.head
+
+      n.prev=previous
+      previous.next=n
+
+      n.next=self.head
+      self.head.prev=n
+    else: #middle
+      n=Node(elem,None,None)
+      subsiquent=self.nodeAt(idx)
+      previous=subsiquent.prev
+
+      n.next=subsiquent
+      subsiquent.prev=n
+
+      previous.next=n
+      n.prev=previous
+
+      pass
+    
+
+
+      pass
+
+
+
+
+
+
+
+
+  # removes at the given index. returns element of the removed node. Check validity of index. return None if index is invalid.
+  def remove(self, idx):        #done
+    if (idx<0 or idx>=self.countNode()):        ###range to return 0 to validindex only
+      return "index invalid"
+
+
+
+    h=self.nodeAt(idx)
+    previous=h.prev
+    subsiquent=h.next
+
+    previous.next=subsiquent
+    subsiquent.prev=previous
+
+    temp=str(h.element)
+    h.next=h.prev=None
+    h=None
+    return temp
+
+    ##CHECK INSERT, INDEXOF, REMOVE
+#  def custom_print(self):
+#    temp=self.head.next
+#    while(temp.next!=self.head):
+#      temp=temp.next
+#    lastindex=temp
+#
+#    print(lastindex.element,"lastindex")
+#    print(lastindex.next.element,"lastindex.next.element")
+#    print(lastindex.next.next.element,"lastindex.next.next.element")
+#    print()
+#    print(lastindex.prev.element,"lastindex.prev.element")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#everything tested and works Alhamdulliah
+print("///  Test 01  ///")                                                      #DONE
+a1 = [10, 20, 30, 40]
+h1 = DoublyList(a1) # Creates a linked list using the values from the array
+
+h1.forwardprint() # This should print: 10,20,30,40. 
+print("##### his should print: 10,20,30,40. ")
+h1.backwardprint() # This should print: 40,30,20,10. 
+print("#####  This should print: 40,30,20,10.")
+print(h1.countNode()) # This should print: 4
+print("##### This should print: 4")
+
+print("///  Test 02  ///")                                                              #DONE
+# returns the reference of the at the given index. For invalid idx return None.
+myNode = h1.nodeAt(2)
+print(myNode.element) # This should print: 30. In case of invalid index This will print "index error"
+print("##### This should print: 30. In case of invalid index This will print index error")
+
+print("///  Test 03  ///")                                                              #DONE
+# returns the index of the containing the given element. if the element does not exist in the List, return -1.
+index = h1.indexOf(40)
+print(index) # This should print: 3. In case of element that 
+#doesn't exists in the list this will print -1.
+print("############## This should print: 3. In case of element that doesn't exists in the list this will print -1.")
+
+print("///  Test 04  ///")      
+
+a2 = [10, 20, 30, 40]
+h2 = DoublyList(a2) # uses the  constructor
+h2.forwardprint() # This should print: 10,20,30,40.  
+print("######This should print: 10,20,30,40.")
+# inserts containing the given element at the given index. Check validity of index.
+h2.insert(85,0)
+h2.forwardprint() # This should print: 85,10,20,30,40.
+print("######INSERTED 85 0  # This should print: 85,10,20,30,40") 
+h2.backwardprint() # This should print: 40,30,20,10,85.
+print("######### This should print: 40,30,20,10,85")
+print()
+h2.insert(95,3)
+h2.forwardprint() # This should print: 85,10,20,95,30,40.  
+print("############INSERTED 95 3 # This should print: 85,10,20,95,30,40.  ")
+h2.backwardprint() # This should print: 40,30,95,20,10,80.####question mistake should be 85  
+print("# This should print: 40,30,95,20,10,85. ")
+
+print()
+#40,30,95,20,10,85. "
+# 0 1  2  3  4  5
+h2.insert(75,6)              ##         0 1   2 3   4 5   6
+h2.forwardprint() # This should print: 85,10,20,95,30,40,75. 
+print("############INSERTED 75 6 # This should print: 85,10,20,95,30,40,75.")                           #EOOR ERROR ERROR ERROR
+h2.backwardprint() # This should print: 75,40,30,95,20,10,85. 
+print("This should print: 75,40,30,95,20,10,85.")
+
+
+print("///  Test 05  ///")
+a3 = [10, 20, 30, 40, 50, 60, 70]
+h3 = DoublyList(a3) # uses the constructor
+h3.forwardprint() # This should print: 10,20,30,40,50,60,70.  
+print("###############  This should print: 10,20,30,40,50,60,70.  ")
+
+# removes at the given index. returns element of the removed node. Check validity of index. return None if index is invalid.
+print("#####")
+print("Removed element: "+ h3.remove(0)) # This should print: Removed element: 10
+
+print("######This should print: Removed element: 10")
+h3.forwardprint() # This should print: 20,30,40,50,60,70.
+print("######This should print: 20 30 40 50 60 70")  
+h3.backwardprint() # This should print: 70,60,50,40,30,20.
+print("######This should print: Removed element: 70 60 50 40 30 20")
+print("#####  test 05 after a bit of gap")
+
+
+print("Removed element: "+ h3.remove(3)) # This should print: Removed element: 50
+print("######This should print: Removed element: 50")
+h3.forwardprint() # This should print: 20,30,40,60,70.  
+print("######### This should print: 20,30,40,60,70. ")
+h3.backwardprint() # This should print: 70,60,40,30,20.  
+print("######### 70,60,40,30,20.  ")
+print("Removed element: "+ h3.remove(4)) # This should print: Removed element: 70
+print("########### This should print: Removed element: 70")
+h3.forwardprint() # This should print: 20,30,40,60. 
+print("###### 20,30,40,60. ")
+h3.backwardprint() # This should print: 60,40,30,20.
+print("####### This should print: 60,40,30,20.")
