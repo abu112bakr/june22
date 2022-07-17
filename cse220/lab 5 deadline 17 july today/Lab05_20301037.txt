@@ -1,0 +1,326 @@
+#id 20301037
+#stack
+#TASK 1 with array
+
+class Stack:
+
+    def __init__(self):
+        self.closing=[")","}","]"]
+        self.opening=["(","{","["]
+    #opening=["(","{","["]
+    #self.closing=[")","}","]"]
+
+    stack=[]
+    pointer=-1
+    
+    def push(self,element):
+
+        self.stack.append((element))
+        self.pointer+=1
+        #default push
+
+    def peek(self):
+        #not needed
+        return(self.stack[self.pointer])
+    
+    def pop(self):
+        #last value
+        try:
+            value =self.stack[self.pointer]
+            self.stack=self.stack[:-1]#list elemet removed
+            self.pointer-=1 #since poped, pointer vlaue -1
+            return value
+        except IndexError:      #empty stack
+            return "error"
+            
+    def checkbranching(self, string):
+        length=len(string)
+
+        
+        count=1
+        number=0
+        for i in string:#i is iterating over the items in original string
+            number=number+1
+            #
+           
+            complementno=0
+            for j in self.closing:#j is all closing, iterating over j
+                
+                
+                if j==i:#checking for match
+                    #print("matched")
+                    temp1=i
+                    temp2=self.pop()
+                    if temp2=="error":
+                        print("This expression is NOT correct")
+                        print("Error at character #",number,i,"-not opened")
+                        return
+
+                    else:
+                        if temp2==self.opening[complementno]:#everything looks good#no problem
+                            continue
+                        else:
+                            print("This expression is NOT correct")
+                            print("Error at character #",number," ",temp2,"-not closed")
+                            return
+
+                complementno=complementno+1
+         
+            for k in self.opening:#k is opening
+                if i==k:#pushing in stack
+                    self.push(i)
+            
+            if count==length:#here problem
+                temp2=self.pop()
+                if temp2=="error":
+                    #print("eveything is okay xD  ",string)
+                    pass
+            
+            count=count+1
+        print("This expression is correct.")
+
+
+
+#stack1.checkbranching("()4587")
+
+#stack1.checkbranching("{}4587")
+
+#stack1.checkbranching("[]4587")
+
+#stack1.checkbranching("[]458(]7")
+
+#stack1.checkbranching("[]4(587")
+
+stack1=Stack()
+print("ouput1")
+print("1+2*(3/4)")
+#stack1=Stack()
+stack1.checkbranching("1+2*(3/4)")
+print("")
+
+print("ouput2")
+print("1+2*[3*3+{4–5(6(7/8/9)+10)–11+(12*8)]+14")
+#stack2=Stack()
+stack1.checkbranching("1+2*[3*3+{4–5(6(7/8/9)+10)–11+(12*8)]+14")
+print("")
+
+print("ouput3")
+print("1+2*[3*3+{4–5(6(7/8/9)+10)}–11+(12*8)/{13+13}]+14")
+#stack3=Stack()
+stack1.checkbranching("1+2*[3*3+{4–5(6(7/8/9)+10)}–11+(12*8)/{13+13}]+14")
+print("")
+
+print("ouput4")
+print("1+2]*[3*3+{4–5(6(7/8/9)+10)–11+(12*8)]+14")
+#stack4=Stack()
+stack1.checkbranching("1+2]*[3*3+{4–5(6(7/8/9)+10)–11+(12*8)]+14")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#lab5 summber 22
+#Stack
+
+#Task 2
+#Branching using linked list
+
+#dummy headed doubly linked list 
+
+class Node:
+    def __init__(self, data, next=None,prev=None):
+        self.data=data
+        self.next=next
+        self.prev=prev
+
+class dlinkedlist:
+
+    def __init__(self):
+        self.startnode=Node("dummy")
+
+    def addlast(self, thisdata):    #basically append
+        newnode=Node(thisdata)
+
+        if (self.startnode.next==None):#this is going to be the first node
+            newnode.prev=self.startnode
+            self.startnode.next=newnode
+
+
+        else:#first node exist
+            
+            #finding end node
+            temp=self.startnode
+            lastnode=None
+
+            while temp.next!=None:
+                #lastnode=temp
+                lastnode=temp.next
+                temp=temp.next
+            #lastnode contain the last node
+            #chingin it
+            newnode.prev=lastnode
+            lastnode.next=newnode            
+
+
+    def addlist(self,list):
+        for i in list:
+            var=str(i)
+            self.addlast(var)
+
+    def poplast(self):
+        
+
+        #removing last thing
+        if (self.startnode.next==None):#only dummy node exist to this one is the first node
+            return "error"
+
+            
+        else:#dummy node and other node already exist
+            
+            #finding end node
+            temp=self.startnode
+            lastnode=None
+            while temp.next!=None:#not going here for some reason
+                #lastnode=temp
+                lastnode=temp.next
+                temp=temp.next
+            #lastnode contain the last node
+            tempnode = lastnode
+            prevnode = lastnode.prev
+            prevnode.next=None
+            return lastnode.data            
+
+class Stack:
+    def __init__(self):
+        self.closing=[")","}","]"]
+        self.opening=["(","{","["]
+        
+    stack=[]
+    pointer=-1
+
+    def push(self, element):
+        self.stack.append((element))
+        self.pointer+=1
+    def peek(self):
+        return(self.stack[self.pointer])
+    def pop(self):
+        
+        try:
+            value =self.stack[self.pointer]
+
+            self.stack=self.stack[:-1]#list elemet removed
+            self.pointer-=1 #since poped, pointer vlaue -1
+            return value
+        except IndexError:
+            return "error"
+            
+    def checkbranching(self, string):
+        length=len(string)
+        
+        count=1
+        number=0
+
+        for i in string:#i iis iterating over elemet in stign main
+            number=number+1
+
+            complementno=0
+            for j in self.closing:#j is all closing
+                
+                
+                if j==i:#looking for match
+                    #print("Match found")
+                    temp1=i
+                    
+                    temp2=test.poplast()
+
+
+                    if temp2=="error":
+                        print("This expression is NOT correct")
+                        print("Error at character #",number,i,"-not opened")
+                        return
+
+                    else:
+                        if temp2==self.opening[complementno]:#everything looks good
+                            continue
+                        
+                        else:
+                            print("This expression is NOT correct")
+                            print("Error at character #",number," ",temp2,"-not closed")
+                            return
+
+                complementno+=1
+         
+            for k in self.opening:#k is opening
+                if i==k:#if an opening is given
+                    #self.push(i)   ########################################
+                    test.addlast(i)
+            if count==length:#here problem
+                #temp2=self.pop()    ########################################
+                temp2=test.poplast()
+                if temp2=="error":
+                    #print("eveything is okay xD  ",string)
+                    pass
+            
+            count=count+1
+        print("This expression is correct.")
+
+
+test=dlinkedlist()
+stack1=Stack()
+print("ouput1")
+print("1+2*(3/4)")
+stack1.checkbranching("1+2*(3/4)")
+print("")
+
+
+print("ouput2")
+print("1+2*[3*3+{4–5(6(7/8/9)+10)–11+(12*8)]+14")
+stack1.checkbranching("1+2*[3*3+{4–5(6(7/8/9)+10)–11+(12*8)]+14")
+print("")
+
+
+print("ouput3")
+print("1+2*[3*3+{4–5(6(7/8/9)+10)}–11+(12*8)/{13+13}]+14")
+stack1.checkbranching("1+2*[3*3+{4–5(6(7/8/9)+10)}–11+(12*8)/{13+13}]+14")
+print("")
+
+
+print("ouput4")
+print("1+2]*[3*3+{4–5(6(7/8/9)+10)–11+(12*8)]+14")
+stack1.checkbranching("1+2]*[3*3+{4–5(6(7/8/9)+10)–11+(12*8)]+14")           
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
