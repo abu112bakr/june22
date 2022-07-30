@@ -10,7 +10,7 @@ class Stack:
     #opening=["(","{","["]
     #self.closing=[")","}","]"]
 
-    stack=[]
+    stack=[]*20
     pointer=-1
     
     def push(self,element):
@@ -204,7 +204,7 @@ class Stack:
         self.closing=[")","}","]"]
         self.opening=["(","{","["]
         
-    stack=[]
+    stack=[]*20
     pointer=-1
 
     def push(self, element):
