@@ -1,0 +1,249 @@
+#NAME ABU BAKAR HASNATH
+ID 20301037
+
+#
+#Base case important without if you cant stop recursion. basically infinite loop occur  #Done
+#Task1
+#a)
+def factorial_recursive(n):
+  if n==0 or n==1:
+    return 1
+  else:
+    return factorial_recursive(n-1)*n
+print(factorial_recursive(4))
+print(factorial_recursive(5))
+
+
+
+
+
+#Task 1                   #DONE
+#b
+def fibo(n):
+  if (n==0 or n==1):
+    return n
+  else:
+    return  fibo(n-1) + fibo(n-2)
+print(fibo(6))
+print(fibo(7))
+
+#Task 1                               #DONE
+#c)
+def print_forward(A,i):
+  #base case when i reaches end of array
+  if i==len(A):
+    #return A[i]
+    return
+  else:
+    print (A[i])
+    #return A[i], print_forward(A,i+1)
+    print_forward(A,i+1)
+A=[10,20,30,40,50]
+i=0
+print_forward(A,0)
+
+#Task1                                                                              #DONE    
+#d)   
+#powerN(3, 1) → 3 powerN(3, 2) → 9 powerN(3, 3) → 27 powerN(3, 4) → 81
+#powerN(3, -1) → 1/3 powerN(3, -2) → 1/9 powerN(3, -3) → 1/27 powerN(3, -4) → 1/81
+def powerN(n,p):
+  if p==1:
+    return n*1
+  else:
+    return n*powerN(n,p-1)
+print(powerN(3,1))
+print(powerN(3,2))
+print(powerN(3,3))
+print(powerN(3,4))
+
+
+
+#task 2                                                 #DONE
+#a      a)Implement a recursive algorithm that takes a decimal number n and converts n to its corresponding (you may return as a string) binary number.
+
+
+def conver_to_binary(n):
+
+
+  if n ==0:
+    return 0
+  else:
+    return conver_to_binary (n//2)*10 + (n%2)
+
+conver_to_binary(10)
+
+
+
+
+
+#task 2                           #Done
+#b
+
+class Node:
+  def __init__(self, e, n):
+    self.element = e
+    self.next = n
+#A=[1,2,3,4]
+#head=Node(A[0],None)
+#tail=head
+##make linked list recursiely not using loop
+#for i in range(1,len(A)):
+#  temp_node=Node(A[i],None)
+#  tail.next=temp_node
+#  tail=tail.next
+
+head=Node(1,None)
+b=Node(2,None)
+c=Node(3,None)
+d=Node(4,None)
+head.next=b
+b.next=c 
+c.next=d
+
+sum=0
+def Addition_recursive(head):
+  if head.next==None:
+    #print(head.element)
+    return head.element 
+
+  else:
+    #print(head.element)
+    x=Addition_recursive(head.next)
+    #print(x,"x")
+    sum=x+head.element
+    
+    return sum  
+Addition_recursive(head)
+
+
+
+
+
+#task 2       c)  HARD HARD           PRACTICE
+#c                                                    # DONE
+##DO Reverse print
+
+class Node:
+  def __init__(self, e, n):
+    self.element = e
+    self.next = n
+
+head=Node(10,None)
+b=Node(20,None)
+c=Node(30,None)
+d=Node(40,None)
+head.next=b
+b.next=c 
+c.next=d
+
+
+def print_reverse_singly_recursively(head):
+  if head.next==None:
+    print(head.element)
+    #return head.element 
+
+  else:
+    print_reverse_singly_recursively(head.next)
+    print(head.element)
+    #return sum  
+print_reverse_singly_recursively(head)
+
+
+                                                          #TASK 3
+
+#last floor +8
+#other floor +5
+#zero floor return 0
+def hocBuilder(height):
+  if height==0:
+    return 0
+  else:
+    if height==1:
+      return 8
+    else:
+      return hocBuilder(height -1) +5
+print(hocBuilder(3))
+
+
+
+
+
+#TASK 4                                     #Done
+#a
+# task 4 [Hard]
+# a
+
+
+
+def print_pattern(n):
+    
+    if n == 0:
+        return 0
+    else:
+        print_pattern(n-1)
+    
+    make_pattern(n)
+    print()
+
+def make_pattern(n):
+    
+    if n == 0:
+        return 0
+    else:
+        make_pattern(n-1)
+        print(n,end=" ")
+
+
+
+n=5
+print_pattern(n)
+
+
+#task 4 b
+                                                #DONE
+def print_pattern_right(n, string="", count=1):
+  if count>n:
+    return 0
+  else:
+    string=string+str(count)
+    no_of_space= (n-count) * " "
+    #printing  line now now
+    #print(no_of_space, string, end=" \n")
+    print(no_of_space, string, end=" ")
+    print()
+    #calling function to print rest of the lines
+    print_pattern_right(n, string, count+ 1)
+print_pattern_right(5)
+
+
+
+#Task  5 DONE
+class FinalQ: 
+ def print(self,array,idx): 
+   if(idx<len(array)): 
+     profit = self.calcProfit(array[idx])  #TO DO 
+   
+   return  print("Investment: "+str(array[idx])+"; Profit: ",str(profit))
+
+ def calcProfit(self,investment): 
+   if investment<25000:
+     return print("Investment bust be greater of equal to 25 000")
+   elif investment == 25000:
+     return 0
+   elif investment <= 100000:
+     current_profit=  0.045*(investment-25000)
+     return current_profit + self.calcProfit(25000)
+   else:
+     current_profit =  0.08*(investment - 100000)
+     return current_profit + self.calcProfit(100000)
+
+ #TO DO 
+  
+      #Tester 
+array=[25000,100000,250000,350000] 
+h = FinalQ() 
+h.print(array,0)
+h.print(array,1)
+h.print(array,2)
+h.print(array,3)
+
