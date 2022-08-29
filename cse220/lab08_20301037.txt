@@ -1,0 +1,343 @@
+#Name Abu Bakar Hasnath
+# id 20301037
+#cse 220 sec 05
+#task 1                                                             #DONE but change list
+#Sort an array RECURSIVELY using selection sort algorithm. 
+A=[64,25,12,22,11]
+def selectionsort_recursive(A,i):
+  minIndex=i
+  for j in range(i+1,len(A)):
+    if A[minIndex]>A[j]:
+      minIndex=j
+  t=A[i]
+  A[i]=A[minIndex]
+  A[minIndex]=t
+  i+=1
+  if i<len(A):
+    selectionsort_recursive(A,i)
+print(A)
+selectionsort_recursive(A,0)
+print(A)
+
+
+
+
+# Task 2                                                          #DONE but change variable
+#Sort an array RECURSIVELY using insertion sort algorithm.
+
+#normally
+#A=[64,25,12,22,11]
+#print(A)
+#for i in range(1,len(A)):
+#  key=A[i]
+#  j=i-1
+#  while (j>=0 and key<A[j]):
+#    A[j+1]=A[j]
+#    j=j-1
+#  A[j+1]=key
+#print(A)
+def insertionSort_recursive(A,i):
+  key=A[i]
+  j=i-1
+  while(j>=0 and key<A[j]):
+    A[j+1]=A[j]
+    j=j-1
+  A[j+1]=key
+
+  i+=1
+  if i<len(A):
+    insertionSort_recursive(A,i)
+ 
+A=[64,25,12,22,11]
+print(A)
+insertionSort_recursive(A,0)
+print(A)
+
+
+
+
+#Task 3                                                                DONE
+#Sort a singly linked sequential list using bubble sort algorithm.
+class Node:
+  def __init__(self, e, n):
+    self.element = e
+    self.next = n
+#A=[1,2,3,4]
+#head=Node(A[0],None)
+#tail=head
+##make linked list recursiely not using loop
+#for i in range(1,len(A)):
+#  temp_node=Node(A[i],None)
+#  tail.next=temp_node
+#  tail=tail.next
+
+head=Node(64,None)
+b=Node(25,None)
+c=Node(12,None)
+d=Node(22,None)
+e=Node(11,None)
+head.next=b
+b.next=c 
+c.next=d
+d.next=e
+
+def getNode(head,i):
+  
+  if i==0:
+    return head
+  else:
+    c=0
+    x=head
+    while c!=i:
+      c+=1
+      x=x.next
+    return x
+#normally
+A=[65,25,12,22,11]
+def bubblesort_normally(A):
+  for i in range(0,len(A)):
+    for j in range(i+1,len(A)):
+      if A[j]<A[i]:
+        t=A[i]
+        A[i]=A[j]
+        A[j]=t
+      
+
+def bubbleSort_recursively_Slinkedlist(head,i,length):
+  for j in range(i+1,length):
+    if getNode(head,j).element < getNode(head,i).element:
+      #
+      t=getNode(head,i).element
+      getNode(head,i).element=getNode(head,j).element
+      getNode(head,j).element=t
+    j+=1
+  i+=1
+  if i<length:
+    bubbleSort_recursively_Slinkedlist(head,i,length)
+  pass
+bubbleSort_recursively_Slinkedlist(head,0, 5)
+print(getNode(head,0).element)
+print(getNode(head,1).element)
+print(getNode(head,2).element)
+print(getNode(head,3).element)
+print(getNode(head,4).element)
+
+
+
+
+#TASK 4                                                                   DONE
+#Sort a singly linked sequential list using selection sort algorithm.
+class Node:
+  def __init__(self, e, n):
+    self.element = e
+    self.next = n
+#A=[1,2,3,4]
+#head=Node(A[0],None)
+#tail=head
+##make linked list recursiely not using loop
+#for i in range(1,len(A)):
+#  temp_node=Node(A[i],None)
+#  tail.next=temp_node
+#  tail=tail.next
+
+head=Node(64,None)
+b=Node(25,None)
+c=Node(12,None)
+d=Node(22,None)
+e=Node(11,None)
+head.next=b
+b.next=c 
+c.next=d
+d.next=e
+#print(head.element,b.element,c.element,d.element)
+def getNode(head,i):
+  
+  if i==0:
+    return head
+  else:
+    c=0
+    x=head
+    while c!=i:
+      c+=1
+      x=x.next
+    return x
+#print("should 64 ",getNode(head,0).element)
+#print("should 25 ",getNode(head,1).element)
+#print("should 12 ",getNode(head,2).element)
+#print("should 22 ",getNode(head,3).element)
+#print("should 11 ",getNode(head,4).element)
+#I wan
+def selectionsort_recursive(head,i,length):
+  minIndex=i
+  for j in range(i+1,length):
+
+
+    #if A[minIndex]>A[j]:
+    if getNode(head,minIndex).element>getNode(head,j).element:
+      minIndex=j
+      #minIndex=j
+  #t=A[i]
+  t=getNode(head,i).element
+  #A[i]=A[minIndex]
+  getNode(head,i).element=getNode(head,minIndex).element
+  #A[minIndex]=t
+  getNode(head,minIndex).element=t
+  
+  i+=1
+  if i<length:
+    selectionsort_recursive(head,i,length)
+#print(A)
+selectionsort_recursive(head,0, 5)
+print(getNode(head,0).element)
+print(getNode(head,1).element)
+print(getNode(head,2).element)
+print(getNode(head,3).element)
+print(getNode(head,4).element)
+
+
+
+
+
+#Task 5                   # done
+#Sort a DOUBLY linked sequential list using insertion sort algorithm.
+class Node:
+  def __init__(self, e, n):
+    self.element = e
+    self.next = n
+#A=[1,2,3,4]
+#head=Node(A[0],None)
+#tail=head
+##make linked list recursiely not using loop
+#for i in range(1,len(A)):
+#  temp_node=Node(A[i],None)
+#  tail.next=temp_node
+#  tail=tail.next
+
+head=Node(64,None)
+b=Node(25,None)
+c=Node(12,None)
+d=Node(22,None)
+e=Node(11,None)
+head.next=b
+b.next=c 
+c.next=d
+d.next=e
+
+def getNode(head,i):
+  
+  if i==0:
+    return head
+  else:
+    c=0
+    x=head
+    while c!=i:
+      c+=1
+      x=x.next
+    return x
+#normally
+#for i in range(1, len(arr)):
+#  
+#        key = arr[i]
+#  
+#        # Move elements of arr[0..i-1], that are
+#        # greater than key, to one position ahead
+#        # of their current position
+#        j = i-1
+#        while j >= 0 and key < arr[j] :
+#                arr[j + 1] = arr[j]
+#                j -= 1
+#        arr[j + 1] = key
+def insertion_sort_Slinkedlist(head,i,length):
+  key=getNode(head,i).element
+  j=i-1
+  while j>=0 and key < (getNode(head,j).element):
+    getNode(head,j+1).element=getNode(head,j).element
+    j-=1
+  getNode(head,j+1).element=key
+
+  i=i+1
+  if i<length:
+    insertion_sort_Slinkedlist(head,i,length)
+
+insertion_sort_Slinkedlist(head,i=1,length=5)
+print(getNode(head,0).element)
+print(getNode(head,1).element)
+print(getNode(head,2).element)
+print(getNode(head,3).element)
+print(getNode(head,4).element)
+
+
+
+
+#Task 6                     #DONE
+#6. Implement binary search algorithm RECURSIVELY.
+#solving like RAK
+#prerequisite = must be already sorted array
+#  0 1 2  3   4
+A=[5,7,11,25,80]
+l=0
+r=4
+def BinarySearch(A,X,l,r):
+  #
+  X=int(X)
+  l=int(l)
+  r=int(r)
+  if r>=1:
+    #
+    midIndex=(l+r)//2
+    if (A[midIndex]==X):
+      return True
+    if (X<A[midIndex]):
+      r=midIndex-1
+      return BinarySearch(A,X,l,r)
+    else:#x>A[midIndex]
+      #
+      l=midIndex+1
+      return BinarySearch(A,X,l,r)
+  else:
+     return False
+
+A=[5,7,11,25,80]
+l=0
+r=4
+print(BinarySearch(A,5,l,r))
+print(BinarySearch(A,7,l,r))
+print(BinarySearch(A,11,l,r))
+print(BinarySearch(A,25,l,r))
+print(BinarySearch(A,80,l,r))
+
+print(BinarySearch(A,1,l,r))
+
+
+
+
+
+#Task 7             #DOne
+#7. Implement a recursive algorithm to find the n-th Fibonacci number using memoization.
+class fibo:
+  def __init__(self):
+    self.list=[None]*100
+
+  def fibonacci(self,n):
+    if n==0 or n==1:
+      return n
+    else:
+      if self.list[n] !=None:
+        return self.list[n]
+      else:# self.list[n]==None:
+        x=self.list[n]= self.fibonacci(n-1) + self.fibonacci(n-2)
+        return x 
+f1=fibo()
+print(f1.fibonacci(1))
+print(f1.fibonacci(2))
+print(f1.fibonacci(3))
+print(f1.fibonacci(4))
+print(f1.fibonacci(5))
+print(f1.fibonacci(6))
+print(f1.fibonacci(7))
+print(f1.fibonacci(8))
+
+#hard test
+print(f1.fibonacci(50)) #wow actually works OMG!!
+
+
